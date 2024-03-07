@@ -161,17 +161,17 @@ class AwqQuantizer:
             )
 
             # [STEP 3]: Compute and apply clipping list
-            clip_list = self._search_best_clip(
-                self.modules[i], named_linears, input_feat
-            )
-            apply_clip(self.modules[i], clip_list)
-            clip_list = append_str_prefix(
-                clip_list, get_op_name(self.model, self.modules[i]) + "."
-            )
+            # clip_list = self._search_best_clip(
+            #     self.modules[i], named_linears, input_feat
+            # )
+            # apply_clip(self.modules[i], clip_list)
+            # clip_list = append_str_prefix(
+            #     clip_list, get_op_name(self.model, self.modules[i]) + "."
+            # )
 
             # [STEP 4]: Quantize weights
-            if not self.export_compatible:
-                self._apply_quant(self.modules[i], named_linears)
+            # if not self.export_compatible:
+            #     self._apply_quant(self.modules[i], named_linears)
 
             clear_memory()
 
@@ -512,7 +512,7 @@ class AwqQuantizer:
         handles = []
 
         # FIXME: Workaround for Mixtral to use block_sparse_moe input features
-        if self.awq_model.model_type == "mixtral":
+        if self.awq_model.model_type == "mixtral" or self.awq_model.model_type == "mixtral_moe":
             named_linears = {
                 **named_linears,
                 "block_sparse_moe": layer.block_sparse_moe,

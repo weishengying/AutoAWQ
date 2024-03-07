@@ -57,6 +57,9 @@ def apply_scale(module, scales_list, input_feat_dict=None):
             any(isinstance(prev_op, t) for t in allowed_norms)
             or "rmsnorm" in str(prev_op.__class__).lower()
         ):
+            # if (len(layers) > 3):
+            #     module.block_sparse_moe.gate.to(best_device)
+            #     layers.append(module.block_sparse_moe.gate)
             scale_ln_fcs(prev_op, layers, scales)
 
         elif any(isinstance(prev_op, t) for t in allowed_act_fns):

@@ -60,6 +60,7 @@ TRANSFORMERS_AUTO_MAPPING_DICT = {
     "gpt_bigcode": "AutoModelForCausalLM",
     "mistral": "AutoModelForCausalLM",
     "mixtral": "AutoModelForCausalLM",
+    "mixtral_moe": "AutoModelForCausalLM",
     "gpt_neox": "AutoModelForCausalLM",
     "aquila": "AutoModelForCausalLM",
     "Yi": "AutoModelForCausalLM",

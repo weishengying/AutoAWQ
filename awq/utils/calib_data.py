@@ -15,6 +15,11 @@ def get_calib_dataset(
     if isinstance(data, str):
         if data == "pileval":
             dataset = load_dataset("mit-han-lab/pile-val-backup", split="validation")
+        elif data == "wikitext":
+            # 从本地文件中 load 数据集
+            dataset = load_dataset('/mnt/infra/weishengying/dataset/wikitext/wikitext-2-raw-v1/0.0.0/4c6a41deac4b4d5d', data_files={'train': 'wikitext-train.arrow', 'test': 'wikitext-test.arrow'})
+            dataset = dataset["train"]
+            print("get_wikitext2 done")
         else:
             dataset = load_dataset(data, split=split)
 
